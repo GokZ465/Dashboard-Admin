@@ -184,13 +184,13 @@ const ProjectCreate = () => {
                   className="form-control"
                   fullWidth
                   variant="filled"
-                  Value={status}
+                  //Value={status}
                   name="status"
                 >
                   
-                  <MenuItem value="">Processing</MenuItem>
-                  <MenuItem value="">Cancelled</MenuItem>
-                  <MenuItem value="">Completed</MenuItem>
+                  <MenuItem>Processing</MenuItem>
+                  <MenuItem>Cancelled</MenuItem>
+                  <MenuItem>Completed</MenuItem>
         </Select>
         <FormLabel>Approved Status</FormLabel>
         <Select
