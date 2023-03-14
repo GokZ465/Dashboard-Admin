@@ -16,12 +16,13 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box sx={{display:"flex", justifyContent:"space-between", p:2, width:"100%", fontFamily: "sans-serif" }}>
       {/* SEARCH BAR */}
       <Box
         display="flex"
         backgroundColor={colors.primary[400]}
         borderRadius="3px"
+        
       >
         <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
         <IconButton type="button" sx={{ p: 1 }}>
@@ -30,27 +31,28 @@ const Topbar = () => {
       </Box>
 
       {/* ICONS */}
-      <Box display="flex" color="blue">
+      <Box>
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon />
+            <DarkModeOutlinedIcon style={{ color: 'white'}}/>
           ) : (
-            <LightModeOutlinedIcon />
+            <LightModeOutlinedIcon style={{ color: 'white'}}/>
           )}
         </IconButton>
         <IconButton>
-          <NotificationsOutlinedIcon />
+          <NotificationsOutlinedIcon style={{ color: 'white'}}/>
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon />
+          <SettingsOutlinedIcon style={{ color: 'white'}}/>
         </IconButton>
         <IconButton>
-          <PersonOutlinedIcon />
+          <PersonOutlinedIcon style={{ color: 'white'}}/>
         </IconButton>
         <IconButton
         to="/login" 
-        className="btn ml-4"
+        className="topbar-btn"
         LinkComponent={Link}
+        style={{ color: 'white'}}
         >Login</IconButton>
       </Box>
     </Box>

@@ -22,22 +22,19 @@ function App() {
   const [isSidebar, setIsSidebar] = useState(true);
   return (
     <div className="app">
-      <div className="topbar" style={{
-        background: 'rgb(0, 249, 249, 0.7)',
-        marginBottom: '20px'
-      }}>
+      <div className="topbar">
           <Topbar setIsSidebar={setIsSidebar} /> 
       </div> 
         <div style={{
-        display: 'flex'
+        display: 'flex',
+        marginTop: '1%',
+        marginLeft: '5%'
       }}>
             
       <div className="sidebar">
       <Sidebar isSidebar={isSidebar} /> 
       </div>        
-      <main className="content" style={{
-        width: '100%'
-      }}>
+      <main className="content">
                      
             <Routes>
               <Route path="/" element={<Dashboard />} />

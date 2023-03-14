@@ -94,11 +94,9 @@ console.log()
                         
                             <MDBDataTable
                                 data={setUsers()}
-                                // className="px-3"
-                                // width={100}
-                                // marginLeft="200px"
-                                // marginRight="auto"
-                                // marginTop="-500px"
+                                className="px-3"
+                                width="100%"
+                                
                                 
                             />
                         

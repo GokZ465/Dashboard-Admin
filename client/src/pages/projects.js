@@ -167,15 +167,30 @@ const ProjectCreate = () => {
         />
         <FormLabel>Status</FormLabel>
         <Select
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="filled"
+          name="status"
+        >
+          <MenuItem>Processing</MenuItem>
+          <MenuItem>Cancelled</MenuItem>
+          <MenuItem>Completed</MenuItem>
+                  
+        </Select>
+        <FormLabel>Status</FormLabel>
+        <Select
                   onChange={handleChange}
                   className="form-control"
+                  fullWidth
+                  variant="filled"
                   Value={status}
                   name="status"
                 >
                   
-                  <MenuItem value="Processing">Processing</MenuItem>
-                  <MenuItem value="Cancelled">Cancelled</MenuItem>
-                  <MenuItem value="Completed">Completed</MenuItem>
+                  <MenuItem value="">Processing</MenuItem>
+                  <MenuItem value="">Cancelled</MenuItem>
+                  <MenuItem value="">Completed</MenuItem>
         </Select>
         <FormLabel>Approved Status</FormLabel>
         <Select

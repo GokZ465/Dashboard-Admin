@@ -52,12 +52,13 @@ const Sidebar = () => {
   return (
     <div 
     className="sbar"
-    style={({ display: "flex" })}
+    style={({ display: "flex"})}
     >
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `rgb(0, 249, 249, 0.7) !important`,
+          background: `#fff !important`,
+          borderRadius: "7px !important",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
