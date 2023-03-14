@@ -46,21 +46,22 @@ export const login = (userLogin, response) => async (dispatch) => {
 
         const config = {
             headers: {
+                //withCredentials: true,
                 'Content-Type': 'application/json'
             }
         }
         console.log("email, password", userLogin)
-        const { data } = await axios.post('http://localhost:5000/auth/login', userLogin, config)
+        const { data } = await axios.post('http://localhost:5000/auth/login', { withCredentials: true }, userLogin, config)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
         })
-        if (response.data.token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-                console.log("success 10");  
-              }
-            //console.log("token", response.data.token)
-              return response.data;
+        // if (response.data.token) {
+        //         localStorage.setItem("user", JSON.stringify(response.data));
+        //         console.log("success 10");  
+        //       }
+        //     //console.log("token", response.data.token)
+        //       return response.data;
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,

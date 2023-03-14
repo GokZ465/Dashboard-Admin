@@ -52,7 +52,7 @@ const ProjectCreate = () => {
   //     return <Navigate to="/" />
   // }
     console.log("Project", values)
-    axios.post("http://localhost:5000/project", values )
+    axios.post("http://localhost:5000/project", { withCredentials: true }, values )
       .then((res) => {
         console.log(res);
       })
@@ -107,6 +107,7 @@ const ProjectCreate = () => {
           value={sampleImage}
           onChange={handleChange}
           margin="normal"
+          type="file"
           fullWidth
           variant="outlined"
           name="sampleImage"
@@ -167,30 +168,17 @@ const ProjectCreate = () => {
         />
         <FormLabel>Status</FormLabel>
         <Select
-          onChange={handleChange}
-          margin="normal"
-          fullWidth
-          variant="filled"
-          name="status"
-        >
-          <MenuItem>Processing</MenuItem>
-          <MenuItem>Cancelled</MenuItem>
-          <MenuItem>Completed</MenuItem>
-                  
-        </Select>
-        <FormLabel>Status</FormLabel>
-        <Select
                   onChange={handleChange}
                   className="form-control"
                   fullWidth
-                  variant="filled"
-                  //Value={status}
+                  variant="outlined"
+                  Value={status}
                   name="status"
                 >
                   
-                  <MenuItem>Processing</MenuItem>
-                  <MenuItem>Cancelled</MenuItem>
-                  <MenuItem>Completed</MenuItem>
+                  <MenuItem value="Processing">Processing</MenuItem>
+                  <MenuItem value="Cancelled">Cancelled</MenuItem>
+                  <MenuItem value="Completed">Completed</MenuItem>
         </Select>
         <FormLabel>Approved Status</FormLabel>
         <Select

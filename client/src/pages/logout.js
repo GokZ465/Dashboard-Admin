@@ -24,7 +24,7 @@ const Logout = () => {
         <Fragment>
                  
                                
-            <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
+            <div >
               <Link className="logout" to="/logout" onClick={logoutHandler}>
                 Logout
               </Link>
