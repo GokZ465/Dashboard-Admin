@@ -46,12 +46,12 @@ export const login = (userLogin, response) => async (dispatch) => {
 
         const config = {
             headers: {
-                //withCredentials: true,
+                withCredentials: true,
                 'Content-Type': 'application/json'
             }
         }
         console.log("email, password", userLogin)
-        const { data } = await axios.post('http://localhost:5000/auth/login', { withCredentials: true }, userLogin, config)
+        const { data } = await axios.post('http://localhost:5000/auth/login', userLogin, config)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
