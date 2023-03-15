@@ -39,6 +39,11 @@ const connectDatabase = () => {
 
 
 const PORT = 5000;
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
+}
 connectDatabase();
 //configuring app
 const app = express()
@@ -46,7 +51,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(cors());
+app.use(cors(corsOptions
+//     {
+//     credentials: true,
+//     origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+//     optionsSuccessStatus: 200,
+//   }
+  ));
 
 
 app.use('/events', eventsRouter);

@@ -52,7 +52,8 @@ const ProjectCreate = () => {
   //     return <Navigate to="/" />
   // }
     console.log("Project", values)
-    axios.post("http://localhost:5000/project", { withCredentials: true }, values )
+    axios.post("http://localhost:5000/project", values, { withCredentials: true,
+    headers: { 'Content-Type': 'multipart/form-data' } } )
       .then((res) => {
         console.log(res);
       })
@@ -89,6 +90,7 @@ const ProjectCreate = () => {
         <TextField
           value={title}
           onChange={handleChange}
+          margin="normal"
           fullWidth
           variant="outlined"
           name="title"
@@ -168,11 +170,11 @@ const ProjectCreate = () => {
         />
         <FormLabel>Status</FormLabel>
         <Select
+                  value={status}
                   onChange={handleChange}
-                  className="form-control"
+                  margin="normal"
                   fullWidth
                   variant="outlined"
-                  Value={status}
                   name="status"
                 >
                   
@@ -182,9 +184,11 @@ const ProjectCreate = () => {
         </Select>
         <FormLabel>Approved Status</FormLabel>
         <Select
+                  value={approvedStatus}
                   onChange={handleChange}
-                  className="form-control"
-                  Value={approvedStatus}
+                  margin="normal"
+                  fullWidth
+                  variant="outlined"
                   name="approvedStatus"
                 >
                   

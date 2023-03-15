@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
+import { useNavigate } from 'react-router-dom';
 
 //import MetaData from '../layout/MetaData'
 //import Loader from '../layout/Loader'
@@ -15,7 +16,7 @@ const UsersList = ({ history }) => {
 
     //const alert = useAlert();
     const dispatch = useDispatch();
-
+    const navigate= useNavigate();
     const { error, users } = useSelector(state => state.allUsers);
     const { isDeleted } = useSelector(state => state.user)
 
@@ -29,7 +30,7 @@ const UsersList = ({ history }) => {
 
         if (isDeleted) {
             //alert.success('User deleted successfully');
-            //history.push('/users');
+            //history.push('/users');            
             dispatch({ type: DELETE_USER_RESET })
         }
 
@@ -38,6 +39,8 @@ console.log()
     const deleteUserHandler = (id) => {
         console.log("id", id)
         dispatch(deleteUser(id))
+        navigate(0);
+        //window.location.reload();
     }
 
     const setUsers = () => {

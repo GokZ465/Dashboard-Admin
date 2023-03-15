@@ -21,7 +21,7 @@ const register = async (req, res, next) => {
  
 const login = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("req.body", req.body)
+
   // Validate emil & password
   if (!email || !password) {
     return next(new ErrorResponse('Please provide an email and password', 400));
@@ -203,4 +203,3 @@ exports.forgotPassword = forgotPassword;
 exports.resetPassword = resetPassword;
 exports.updateDetails = updateDetails;
 exports.updatePassword = updatePassword;
-exports.sendTokenResponse = sendTokenResponse;
