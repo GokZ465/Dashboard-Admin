@@ -6,7 +6,7 @@ const { protect, authorize } = require('../middleware/aauth.js');
 router
   .route('/')
   .get(eventController.getAllEvents)
-  .post(protect, authorize('superadmin'), eventController.addEvent);
+  .post(eventController.addEvent);
   
 router
   .route('/:id')

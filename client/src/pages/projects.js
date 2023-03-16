@@ -63,7 +63,7 @@ const ProjectCreate = () => {
   };
 
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues((prevState) => ({ ...prevState, [e.target.name]: e.target.value, })) 
     // console.log(e.target.name, " ----- ", e.target.value);
   };
 
@@ -109,7 +109,7 @@ const ProjectCreate = () => {
           value={sampleImage}
           onChange={handleChange}
           margin="normal"
-          type="file"
+          //type="file"
           fullWidth
           variant="outlined"
           name="sampleImage"
@@ -149,14 +149,20 @@ const ProjectCreate = () => {
           margin="normal"
           fullWidth
           variant="outlined"
-          name="color"
+          name="colors"
+          value={colors}
         >
-          <MenuItem>Please select</MenuItem>
-                  {colors.map((c) => (
-                    <MenuItem key={c} value={c}>
-                      {c}
+                  <MenuItem value="Black">Black</MenuItem>
+                  <MenuItem value="Brown">Brown</MenuItem>
+                  <MenuItem value="Silver">Silver</MenuItem>
+                  <MenuItem value="White">White</MenuItem>
+                  <MenuItem value="Blue">Blue</MenuItem>
+          {/* <MenuItem>Please select</MenuItem>
+                  {colors?.map((c) => (
+                    <MenuItem key={c} value={c.colors}>
+                      {c.colors}
                     </MenuItem>
-                  ))}
+                  ))} */}
         </Select>
         <FormLabel>Leader Photo</FormLabel>   
         <TextField
@@ -164,7 +170,7 @@ const ProjectCreate = () => {
           onChange={handleChange}
           margin="normal"
           fullWidth
-          type="file"
+          //type="file"
           variant="outlined"
           name="leaderPhoto"
         />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 import FullCalendar from "@fullcalendar/react";
 import daygridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -9,9 +10,13 @@ const Calendar = () => {
 
   const handleSelect = (info) => {
     const { start, end } = info;
-    const eventNamePrompt = prompt("Enter, event name");
-    if (eventNamePrompt) {
-      setEvents([
+    const eventNamePrompt = prompt("Event Name");
+    const eventCategoryPrompt = prompt("Event Category");
+    const eventDatePrompt = prompt("Event Date");
+    const eventstatusPrompt = prompt("Status");
+    const eventcreatedByPrompt = prompt("Created By");
+    if (eventNamePrompt, eventCategoryPrompt, eventDatePrompt, eventstatusPrompt, eventcreatedByPrompt) {
+       setEvents([
         ...events,
         {
           start,
@@ -19,6 +24,7 @@ const Calendar = () => {
           title: eventNamePrompt,
           //id: uuid(),
         },
+        console.log(events)
       ]);
     }
   };

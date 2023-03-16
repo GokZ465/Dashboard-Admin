@@ -16,7 +16,7 @@ const projectSchema = new Schema({
 
     sampleImage : {
         type : String,
-        default: 'no-image.jpg'
+        //default: 'no-image.jpg'
     },
     dueDate1 : {
         type : Date,
@@ -37,7 +37,7 @@ const projectSchema = new Schema({
     leaderPhoto: {
         type: String,
         required : true,
-        maxsize : 400
+       // maxsize : 400
     },
     status : {
         type: String,

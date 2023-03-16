@@ -32,14 +32,16 @@ const UsersList = ({ history }) => {
             //alert.success('User deleted successfully');
             //history.push('/users');            
             dispatch({ type: DELETE_USER_RESET })
+            dispatch(allUsers());
         }
 
     }, [dispatch, alert, error, isDeleted, history])
 console.log()
     const deleteUserHandler = (id) => {
         console.log("id", id)
-        dispatch(deleteUser(id))
-        navigate(0);
+  //      dispatch(deleteUser(id))
+//        dispatch(allUsers());
+        //navigate(0);
         //window.location.reload();
     }
 
@@ -76,9 +78,9 @@ console.log()
                 role: user.role,
 
                 actions: <Fragment>
-                    <Link to={`/users/${user._id}`} className="btn btn-primary py-1 px-2">
+                    {/* <Link to={`/users/${user._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
-                    </Link>
+                    </Link> */}
                     <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)}>
                         <i className="fa fa-trash">Delete</i>
                     </button>

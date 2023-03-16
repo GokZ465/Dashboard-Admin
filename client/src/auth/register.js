@@ -26,7 +26,7 @@ const Register = ({ history }) => {
 
         if (isAuthenticated) {
           console.log("isAuthenticated", isAuthenticated)
-          navigate('/');
+          navigate(0);
           }
 
         if (error) {
