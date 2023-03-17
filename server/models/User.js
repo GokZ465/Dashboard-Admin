@@ -2,7 +2,10 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require("dotenv").config();
+const dotenv = require('dotenv'),
+      path   = require('path')
+dotenv.config({path: path.join(__dirname, '../config./config.env')})
+
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -38,6 +41,8 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+
+if (process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').config({ path: 'server/config/config.env' })
 // Encrypt password using bcrypt
 UserSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
@@ -50,9 +55,10 @@ UserSchema.pre('save', async function(next) {
 
 // Sign JWT and return
 UserSchema.methods.getSignedJwtToken = function() {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE
   });
+  return token;
 };
 
 // Match user entered password to hashed password in database

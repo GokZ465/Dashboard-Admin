@@ -10,7 +10,7 @@ const projectSchema = new Schema({
 
     projectDescription : {
         type: String,
-        required: [true, 'Please add a description'],
+        //required: [true, 'Please add a description'],
         maxlength: [500, 'Description can not be more than 500 characters']
     },
 
@@ -20,15 +20,15 @@ const projectSchema = new Schema({
     },
     dueDate1 : {
         type : Date,
-        required : true
+        // required : true
     },
     dueDate2 : {
         type : Date,
-        required : true
+        // required : true
     },
     compulsoryWordings: {
         type: String,
-        required : true
+        // required : true
     },
     colors: {
         type: String,
@@ -36,20 +36,20 @@ const projectSchema = new Schema({
       },
     leaderPhoto: {
         type: String,
-        required : true,
+        // required : true,
        // maxsize : 400
     },
     status : {
         type: String,
-        required : true
+        // required : true
     },
     approvedStatus : {
         type: String,
-        required : true
+        // required : true
     },
     createdBy : {
         type : String,
-        required : true
+        // required : true
     },
     createdAt : {
         type: Date,
@@ -57,7 +57,7 @@ const projectSchema = new Schema({
     },
     lastUpdateBy : {
         type : String,
-        //required : true
+        // required : true
     },
     lastUpdatedOn : {
         type: Date,

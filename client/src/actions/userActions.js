@@ -39,7 +39,7 @@ import {
 } from '../constants/userConstants'
 import authHeader from "./authHeader";
 // Login
-export const login = (userLogin, response) => async (dispatch) => {
+export const login = (userData) => async (dispatch) => {
     try {
 
         dispatch({ type: LOGIN_REQUEST })
@@ -50,8 +50,10 @@ export const login = (userLogin, response) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        console.log("email, password", userLogin)
-        const { data } = await axios.post('http://localhost:5000/auth/login', userLogin, config)
+        console.log("email, password", userData)
+        axios.defaults.withCredentials = true;
+        const { data } = await axios.post('http://localhost:5000/auth/login', userData, config)
+        console.log("Login_Response", data)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user

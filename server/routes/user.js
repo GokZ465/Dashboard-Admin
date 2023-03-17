@@ -5,7 +5,7 @@ const { protect } = require('../middleware/aauth');
 
 
 router.post("/", userController.addUser);
-router.get("/", userController.getAllUsers);
+router.get("/", protect, userController.getAllUsers);
 router.get("/:id", protect, userController.getById);
 router.put("/:id", protect, userController.updateUser);
 router.delete("/:id", userController.deleteUser);

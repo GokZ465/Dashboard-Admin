@@ -2,6 +2,10 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const sendEmail = require('../utils/sendEmail');
 const User = require('../models/User');
+const dotenv = require('dotenv'),
+      path   = require('path')
+dotenv.config({path: path.join(__dirname, '../config./config.env')})
+
 
 const register = async (req, res, next) => {
   const { name, email, password, role } = req.body;
@@ -40,8 +44,8 @@ const login = async (req, res, next) => {
   if (!isMatch) {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
-
-  sendTokenResponse(user, 200, res);
+console.log("Data", user)
+sendTokenResponse(user, 200, res);
 };
 
 
@@ -50,7 +54,7 @@ const logout = async (req, res, next) => {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true
   });
-
+console.log("Logged out successfully")
   res.status(200).json({
     success: true,
     data: {}
@@ -60,11 +64,16 @@ const logout = async (req, res, next) => {
 
 const getMe = async (req, res, next) => {
   const user = await User.findById(req.user.id);
-
+// const user = null;
+// if (user !== null) {
+//   const userId = await User.findById(req.user.id); // This line will not throw an error
+// }
   res.status(200).json({
     success: true,
+    token,
     data: user
   });
+  //sendTokenResponse(user, 200, res);
 };
 
 
@@ -185,12 +194,15 @@ const sendTokenResponse = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') {
     options.secure = true;
   }
+  console.log("token", token)
 
   res
     .status(statusCode)
     .cookie('token', token, options)
     .json({
       success: true,
+      secure: true,
+      signed: true,
       token
     });
 };
@@ -203,3 +215,4 @@ exports.forgotPassword = forgotPassword;
 exports.resetPassword = resetPassword;
 exports.updateDetails = updateDetails;
 exports.updatePassword = updatePassword;
+
