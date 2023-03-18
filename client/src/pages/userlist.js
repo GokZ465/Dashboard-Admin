@@ -99,8 +99,9 @@ console.log()
                         
                             <MDBDataTable
                                 data={setUsers()}
-                                className="px-3"
+                                //className="px-3"
                                 width="100%"
+                                textAlign="center"
                                 
                                 
                             />

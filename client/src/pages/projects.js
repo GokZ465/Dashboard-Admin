@@ -20,7 +20,7 @@ const initialState = {
   dueDate1: "",
   dueDate2: "",
   compulsoryWordings: "",
-  colors: ["Black", "Brown", "Silver", "White", "Blue"],
+  colors: "",
   leaderPhoto: "",
   status: "",
   approvedStatus: "",
@@ -28,7 +28,7 @@ const initialState = {
 };
 
 const ProjectCreate = () => {
-  const [values, setValues] = useState(initialState);
+  const [input, setInput] = useState([initialState]);
  // const { isAuthenticated, user } = useSelector(state => state.auth)
 
   // destructure
@@ -44,15 +44,15 @@ const ProjectCreate = () => {
   status,
   approvedStatus,
   createdBy
-  } = values;
+  } = input;
 
   const handleSubmit = (e) => {
     e.preventDefault();
   //   if (isAuthenticated === true && user.role !== 'superadmin') {
   //     return <Navigate to="/" />
   // }
-    console.log("Project", values)
-    axios.post("http://localhost:5000/project", values, { withCredentials: true,
+    console.log("Project", input);
+    axios.post("http://localhost:5000/project", input, { withCredentials: true,
     headers: { 'Content-Type': 'multipart/form-data' } } )
       .then((res) => {
         console.log(res);
@@ -60,10 +60,24 @@ const ProjectCreate = () => {
       .catch((err) => {
         console.log(err);
       });
+      // setInput({
+      //   ...input,
+      //   title: "",
+      //   projectDescription: "",
+      //   sampleImage: "",
+      //   dueDate1: "",
+      //   dueDate2: "",
+      //   compulsoryWordings: "",
+      //   colors: "",
+      //   leaderPhoto: "",
+      //   status: "",
+      //   approvedStatus: "",
+      //   createdBy: ""
+      // });
   };
 
   const handleChange = (e) => {
-    setValues((prevState) => ({ ...prevState, [e.target.name]: e.target.value, })) 
+    setInput((prevState) => ({ ...prevState, [e.target.name]: e.target.value, })) 
     // console.log(e.target.name, " ----- ", e.target.value);
   };
 
@@ -73,6 +87,7 @@ const ProjectCreate = () => {
     onSubmit={handleSubmit} 
     id= "inputform" 
     name="inputform"
+    enctype="multipart/form-data"
     
     >
       <Box

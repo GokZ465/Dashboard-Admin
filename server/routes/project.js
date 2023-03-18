@@ -6,7 +6,7 @@ const { protect, authorize } = require('../middleware/aauth.js');
 router
   .route('/')
   .get(projectController.getAllProjects)
-  .post(projectController.addProject);
+  .post(protect, authorize('superadmin'), projectController.addProject);
   
 router
   .route('/:id')

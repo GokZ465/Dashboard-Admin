@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./layout/Topbar";
 import Sidebar from "./layout/Sidebar";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./Dashboard/index";
 import ProjectCreate from "./pages/projects";
 import UserList from "./pages/userlist";
 import Profile from "./pages/profile";

@@ -36,9 +36,9 @@ const addProject = async (req, res, next) => {
           createdBy,
           createdAt,
         });
-        // console.log("req.body.user", req.body.user)
-        // console.log("req.user.id", req.user.id)
-        // req.body.user = req.user.id;
+        console.log("req.body.user", req.body.userData)
+        console.log("req.user.id", req.user.id)
+        req.body.userData = req.user.id;
         console.log("Project",req.body)
         await project.save();
         
@@ -46,9 +46,9 @@ const addProject = async (req, res, next) => {
     catch(err){
         console.log(err);
     }
-    // if (!project && req.user.role !== 'superadmin') {
-    //   return res.status(500).json({ message: "Unauthorized user Unable To Add Project" });
-    // }
+    if (!project && req.user.role !== 'superadmin') {
+      return res.status(500).json({ message: "Unauthorized user Unable To Add Project" });
+    }
     return res.status(201).json({ project });
   }
  
