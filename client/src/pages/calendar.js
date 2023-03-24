@@ -1,31 +1,55 @@
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import daygridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
 const Calendar = () => {
-
   const [events, setEvents] = useState([]);
 
-  const handleSelect = (info) => {
+  const handleSelect = async (info) => {
     const { start, end } = info;
     const eventNamePrompt = prompt("Event Name");
     const eventCategoryPrompt = prompt("Event Category");
     const eventDatePrompt = prompt("Event Date");
     const eventstatusPrompt = prompt("Status");
     const eventcreatedByPrompt = prompt("Created By");
-    if (eventNamePrompt, eventCategoryPrompt, eventDatePrompt, eventstatusPrompt, eventcreatedByPrompt) {
-       setEvents([
-        ...events,
+    if (
+      (
+        eventNamePrompt,
+      eventCategoryPrompt,
+      eventDatePrompt,
+      eventstatusPrompt,
+      eventcreatedByPrompt
+      )
+    ) {
+      console.log("enters if ");
+      setEvents([
+        eventNamePrompt,
+        eventCategoryPrompt,
+        eventDatePrompt,
+        eventstatusPrompt,
+        eventcreatedByPrompt,
         {
           start,
           end,
           title: eventNamePrompt,
-          //id: uuid(),
+          //   //id: uuid(),
         },
-        console.log(events)
       ]);
+      console.log(events);
+      axios
+        .post("http://localhost:5000/events", JSON.stringify(events), {
+          withCredentials: true,
+        })
+        .then(
+          (res) => {
+            console.log(res);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     }
   };
   const EventItem = ({ info }) => {
@@ -42,7 +66,6 @@ const Calendar = () => {
       <FullCalendar
         editable
         selectable
-        events={events}
         select={handleSelect}
         headerToolbar={{
           start: "today prev next",
@@ -51,6 +74,7 @@ const Calendar = () => {
         eventContent={(info) => <EventItem info={info} />}
         plugins={[daygridPlugin, interactionPlugin]}
         views={["dayGridMonth", "dayGridWeek", "dayGridDay"]}
+        //  events={events}
       />
     </div>
   );

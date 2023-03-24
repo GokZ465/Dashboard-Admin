@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 //import { Navigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import {
-  Button,
-  FormLabel,
-  TextField,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import { useSelector } from "react-redux";
+import { Button, FormLabel, TextField, Select, MenuItem } from "@mui/material";
 import { Box } from "@mui/system";
-
-
 
 const initialState = {
   title: "",
@@ -24,71 +16,82 @@ const initialState = {
   leaderPhoto: "",
   status: "",
   approvedStatus: "",
-  createdBy: ""
+  createdBy: "",
 };
 
 const ProjectCreate = () => {
   const [input, setInput] = useState([initialState]);
- // const { isAuthenticated, user } = useSelector(state => state.auth)
+  // const { isAuthenticated, user } = useSelector(state => state.auth)
 
   // destructure
   const {
-  title,
-  projectDescription,
-  sampleImage,
-  dueDate1,
-  dueDate2,
-  compulsoryWordings,
-  colors,
-  leaderPhoto,
-  status,
-  approvedStatus,
-  createdBy
+    title,
+    projectDescription,
+    sampleImage,
+    dueDate1,
+    dueDate2,
+    compulsoryWordings,
+    colors,
+    leaderPhoto,
+    status,
+    approvedStatus,
+    createdBy,
   } = input;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  //   if (isAuthenticated === true && user.role !== 'superadmin') {
-  //     return <Navigate to="/" />
-  // }
+    //   if (isAuthenticated === true && user.role !== 'superadmin') {
+    //     return <Navigate to="/" />
+    // }
     console.log("Project", input);
-    axios.post("http://localhost:5000/project", input, { withCredentials: true,
-    headers: { 'Content-Type': 'multipart/form-data' } } )
+    axios
+      .post("http://localhost:5000/project", JSON.stringify(input), {
+        withCredentials: true,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+      // fetch("http://localhost:5000/project", {
+      //   method: "POST",
+      //   withCredentials: true,
+      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   body: JSON.stringify(input),
+      // })
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-      // setInput({
-      //   ...input,
-      //   title: "",
-      //   projectDescription: "",
-      //   sampleImage: "",
-      //   dueDate1: "",
-      //   dueDate2: "",
-      //   compulsoryWordings: "",
-      //   colors: "",
-      //   leaderPhoto: "",
-      //   status: "",
-      //   approvedStatus: "",
-      //   createdBy: ""
-      // });
+    // setInput({
+    //   ...input,
+    //   title: "",
+    //   projectDescription: "",
+    //   sampleImage: "",
+    //   dueDate1: "",
+    //   dueDate2: "",
+    //   compulsoryWordings: "",
+    //   colors: "",
+    //   leaderPhoto: "",
+    //   status: "",
+    //   approvedStatus: "",
+    //   createdBy: ""
+    // });
   };
 
   const handleChange = (e) => {
-    setInput((prevState) => ({ ...prevState, [e.target.name]: e.target.value, })) 
-    // console.log(e.target.name, " ----- ", e.target.value);
+    setInput((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+   
   };
 
   return (
-    <form 
-    method = "POST" 
-    onSubmit={handleSubmit} 
-    id= "inputform" 
-    name="inputform"
-    enctype="multipart/form-data"
-    
+    <form
+      method="POST"
+      onSubmit={handleSubmit}
+      id="inputform"
+      name="inputform"
+      enctype="multipart/form-data"
     >
       <Box
         display="flex"
@@ -141,14 +144,14 @@ const ProjectCreate = () => {
         />
         <FormLabel>Due Date 2</FormLabel>
         <TextField
-            type="date"
+          type="date"
           value={dueDate2}
           onChange={handleChange}
           margin="normal"
           fullWidth
           variant="outlined"
           name="dueDate2"
-          />
+        />
         <FormLabel>Compulsory Wordings</FormLabel>
         <TextField
           value={compulsoryWordings}
@@ -167,11 +170,11 @@ const ProjectCreate = () => {
           name="colors"
           value={colors}
         >
-                  <MenuItem value="Black">Black</MenuItem>
-                  <MenuItem value="Brown">Brown</MenuItem>
-                  <MenuItem value="Silver">Silver</MenuItem>
-                  <MenuItem value="White">White</MenuItem>
-                  <MenuItem value="Blue">Blue</MenuItem>
+          <MenuItem value="Black">Black</MenuItem>
+          <MenuItem value="Brown">Brown</MenuItem>
+          <MenuItem value="Silver">Silver</MenuItem>
+          <MenuItem value="White">White</MenuItem>
+          <MenuItem value="Blue">Blue</MenuItem>
           {/* <MenuItem>Please select</MenuItem>
                   {colors?.map((c) => (
                     <MenuItem key={c} value={c.colors}>
@@ -179,7 +182,7 @@ const ProjectCreate = () => {
                     </MenuItem>
                   ))} */}
         </Select>
-        <FormLabel>Leader Photo</FormLabel>   
+        <FormLabel>Leader Photo</FormLabel>
         <TextField
           value={leaderPhoto}
           onChange={handleChange}
@@ -191,32 +194,30 @@ const ProjectCreate = () => {
         />
         <FormLabel>Status</FormLabel>
         <Select
-                  value={status}
-                  onChange={handleChange}
-                  margin="normal"
-                  fullWidth
-                  variant="outlined"
-                  name="status"
-                >
-                  
-                  <MenuItem value="Processing">Processing</MenuItem>
-                  <MenuItem value="Cancelled">Cancelled</MenuItem>
-                  <MenuItem value="Completed">Completed</MenuItem>
+          value={status}
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          name="status"
+        >
+          <MenuItem value="Processing">Processing</MenuItem>
+          <MenuItem value="Cancelled">Cancelled</MenuItem>
+          <MenuItem value="Completed">Completed</MenuItem>
         </Select>
         <FormLabel>Approved Status</FormLabel>
         <Select
-                  value={approvedStatus}
-                  onChange={handleChange}
-                  margin="normal"
-                  fullWidth
-                  variant="outlined"
-                  name="approvedStatus"
-                >
-                  
-                  <MenuItem value="Pending">Pending</MenuItem>
-                  <MenuItem value="Approved">Approved</MenuItem>
-                  <MenuItem value="Rejected">Rejected</MenuItem>
-                </Select>
+          value={approvedStatus}
+          onChange={handleChange}
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          name="approvedStatus"
+        >
+          <MenuItem value="Pending">Pending</MenuItem>
+          <MenuItem value="Approved">Approved</MenuItem>
+          <MenuItem value="Rejected">Rejected</MenuItem>
+        </Select>
         <FormLabel>Created By</FormLabel>
         <TextField
           value={createdBy}
@@ -226,8 +227,8 @@ const ProjectCreate = () => {
           variant="outlined"
           name="createdBy"
         />
-        
-       <Button variant="contained" type="submit">
+
+        <Button variant="contained" type="submit">
           Create
         </Button>
       </Box>
